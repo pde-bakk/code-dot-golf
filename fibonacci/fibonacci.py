@@ -1,3 +1,3 @@
-L=[0,1]
-while len(L)<31:L+=sum(L[-2:]),
-print(*L,sep='\n')
+def f(a,b):
+ if a<10**6:print(a);f(b,a+b)
+f(0,1)
