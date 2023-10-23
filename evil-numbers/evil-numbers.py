@@ -1,1 +1,2 @@
-[print(i)for i in range(51)if bin(i).count('1')%2<1]
+n=0
+while n<51:print(n);n=(n+2)^(-((n+2)^n))%3
