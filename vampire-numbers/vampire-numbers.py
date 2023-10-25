@@ -1,34 +1,14 @@
-import sys
-
-def get_digits(num_1: int, num_2: int = 0) -> list[int]:
-	l = []
-	while num_1 > 0:
-		remainder, num_1 = num_1 % 10, num_1 // 10
-		l.append(remainder)
-	while num_2 > 0:
-		remainder, num_2 = num_2 % 10, num_2 // 10
-		l.append(remainder)
+def F(n,m=0):
+	l=[]
+	while n>0:r,n=n%10,n//10;l.append(r)
+	while m>0:r,m=m%10,m//10;l.append(r)
 	return sorted(l)
-
-
-def check_fangs(fang_1: int, fang_2: int) -> bool:
-	multiplied = fang_1 * fang_2
-	if fang_1 * 10 <= fang_2 or fang_2 * 10 <= fang_1:
-		return False
-	vampire_digits = get_digits(multiplied)
-	factor_digits = get_digits(fang_1, fang_2)
-	return len(factor_digits)%2==0 and ((fang_1%10)or(fang_2%10)) and vampire_digits == factor_digits
-
-def main():
-	l = set()
-	start, end = 10, 1000
-	for i in range(start, end+1):
-		for j in range(i, end+1):
-			if check_fangs(i, j):
-				print(f'{i*j}, {(i, j)}', file=sys.stderr)
-				l.add(i*j)
-	print(*sorted(l), sep='\n')
-
-
-if __name__ == '__main__':
-	main()
+def cf(f1,f2):
+	if f1*10<=f2 or f2*10<=f1:return 0
+	v,f=F(f1*f2),F(f1,f2)
+	return len(f)%2==0 and((f1%10)or(f2%10))and v==f
+l=set()
+for i in range(10,1001):
+	for j in range(i,1001):
+		if cf(i,j):l.add(i*j)
+print(*sorted(l),sep='\n')
